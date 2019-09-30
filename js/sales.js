@@ -15,6 +15,7 @@ var seattle = {
     }
   },
 };
+
 seattle.generateRandomSalesData();
 console.log(seattle.hourlySalesArray);
 
@@ -27,7 +28,13 @@ var tokyo = {
   randomNumberOfCustomers: function(){
     return Math.floor((Math.random()) * (this.maximumCustomersPerHour - this.minimumCustomersPerHour) + this.minimumCustomersPerHour);
   },
+  generateRandomSalesData: function (){
+    for(var i = 0; i < this.hoursOpen; i++){
+      this.hourlySalesArray.push(Math.floor(this.randomNumberOfCustomers() * this.avgCookieSalesPerCustomer));
+    }
+  },
 };
+
 var dubai = {
   minimumCustomersPerHour: 11,
   maximumCustomersPerHour: 38,
@@ -37,7 +44,13 @@ var dubai = {
   randomNumberOfCustomers: function(){
     return Math.floor((Math.random()) * (this.maximumCustomersPerHour - this.minimumCustomersPerHour) + this.minimumCustomersPerHour);
   },
+  generateRandomSalesData: function (){
+    for(var i = 0; i < this.hoursOpen; i++){
+      this.hourlySalesArray.push(Math.floor(this.randomNumberOfCustomers() * this.avgCookieSalesPerCustomer));
+    }
+  },
 };
+
 var paris = {
   minimumCustomersPerHour: 20,
   maximumCustomersPerHour: 38,
@@ -47,7 +60,13 @@ var paris = {
   randomNumberOfCustomers: function(){
     return Math.floor((Math.random()) * (this.maximumCustomersPerHour - this.minimumCustomersPerHour) + this.minimumCustomersPerHour);
   },
+  generateRandomSalesData: function (){
+    for(var i = 0; i < this.hoursOpen; i++){
+      this.hourlySalesArray.push(Math.floor(this.randomNumberOfCustomers() * this.avgCookieSalesPerCustomer));
+    }
+  },
 };
+
 var lima = {
   minimumCustomersPerHour: 2,
   maximumCustomersPerHour: 16,
@@ -56,5 +75,10 @@ var lima = {
   hourlySalesArray: [],
   randomNumberOfCustomers: function(){
     return Math.floor((Math.random()) * (this.maximumCustomersPerHour - this.minimumCustomersPerHour) + this.minimumCustomersPerHour);
+  },
+  generateRandomSalesData: function (){
+    for(var i = 0; i < this.hoursOpen; i++){
+      this.hourlySalesArray.push(Math.floor(this.randomNumberOfCustomers() * this.avgCookieSalesPerCustomer));
+    }
   },
 };
