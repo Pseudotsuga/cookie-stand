@@ -6,6 +6,7 @@ var seattle = {
   maximumCustomersPerHour: 65,
   avgCookieSalesPerCustomer: 6.3,
   hoursOpen: 14,
+  hoursOpenTitle: ['6AM:','7AM:','8AM:','9AM:','10AM:','11AM:','12PM:','1PM:','2PM:','3PM:','4PM:','5PM:','6PM:','7PM:'],
   hourlySalesArray: [],
   randomNumberOfCustomers: function(){
     return Math.floor((Math.random()) * (this.maximumCustomersPerHour - this.minimumCustomersPerHour) + this.minimumCustomersPerHour);
@@ -16,20 +17,19 @@ var seattle = {
     }
   },
   renderSalesArrayAsUnorderedList: function(){
-    var mainElement = document.getElementById('test');
+    var mainElement = document.getElementsByTagName('main')[0];
     var ulElement = document.createElement('ul');
     ulElement.textContent = `${this.storename} Sales Data:`;
     mainElement.appendChild(ulElement);
     for (var i = 0; i < this.hourlySalesArray.length; i++){
       var liElement = document.createElement('li');
       liElement.setAttribute('id', `li${i}`);
-      liElement.textContent = `${this.hourlySalesArray[i]}`;
+      liElement.textContent = `${this.hoursOpenTitle[i]} ${this.hourlySalesArray[i]}`;
       ulElement.appendChild(liElement);
     }
   },
 };
 
-console.log(seattle.hourlySalesArray);
 seattle.generateRandomSalesData();
 seattle.renderSalesArrayAsUnorderedList();
 
@@ -39,6 +39,7 @@ var tokyo = {
   maximumCustomersPerHour: 24,
   avgCookieSalesPerCustomer: 1.2,
   hoursOpen: 14,
+  hoursOpenTitle: ['6AM:','7AM:','8AM:','9AM:','10AM:','11AM:','12PM:','1PM:','2PM:','3PM:','4PM:','5PM:','6PM:','7PM:'],
   hourlySalesArray: [],
   randomNumberOfCustomers: function(){
     return Math.floor((Math.random()) * (this.maximumCustomersPerHour - this.minimumCustomersPerHour) + this.minimumCustomersPerHour);
@@ -56,7 +57,7 @@ var tokyo = {
     for (var i = 0; i < this.hourlySalesArray.length; i++){
       var liElement = document.createElement('li');
       liElement.setAttribute('id', `li${i}`);
-      liElement.textContent = `${this.hourlySalesArray[i]}`;
+      liElement.textContent = `${this.hoursOpenTitle[i]} ${this.hourlySalesArray[i]}`;
       ulElement.appendChild(liElement);
     }
   },
@@ -70,6 +71,7 @@ var dubai = {
   maximumCustomersPerHour: 38,
   avgCookieSalesPerCustomer: 3.7,
   hoursOpen: 14,
+  hoursOpenTitle: ['6AM:','7AM:','8AM:','9AM:','10AM:','11AM:','12PM:','1PM:','2PM:','3PM:','4PM:','5PM:','6PM:','7PM:'],
   hourlySalesArray: [],
   randomNumberOfCustomers: function(){
     return Math.floor((Math.random()) * (this.maximumCustomersPerHour - this.minimumCustomersPerHour) + this.minimumCustomersPerHour);
@@ -87,7 +89,7 @@ var dubai = {
     for (var i = 0; i < this.hourlySalesArray.length; i++){
       var liElement = document.createElement('li');
       liElement.setAttribute('id', `li${i}`);
-      liElement.textContent = `${this.hourlySalesArray[i]}`;
+      liElement.textContent = `${this.hoursOpenTitle[i]} ${this.hourlySalesArray[i]}`;
       ulElement.appendChild(liElement);
     }
   },
@@ -101,6 +103,7 @@ var paris = {
   maximumCustomersPerHour: 38,
   avgCookieSalesPerCustomer: 2.3,
   hoursOpen: 14,
+  hoursOpenTitle: ['6AM:','7AM:','8AM:','9AM:','10AM:','11AM:','12PM:','1PM:','2PM:','3PM:','4PM:','5PM:','6PM:','7PM:'],
   hourlySalesArray: [],
   randomNumberOfCustomers: function(){
     return Math.floor((Math.random()) * (this.maximumCustomersPerHour - this.minimumCustomersPerHour) + this.minimumCustomersPerHour);
@@ -118,7 +121,7 @@ var paris = {
     for (var i = 0; i < this.hourlySalesArray.length; i++){
       var liElement = document.createElement('li');
       liElement.setAttribute('id', `li${i}`);
-      liElement.textContent = `${this.hourlySalesArray[i]}`;
+      liElement.textContent = `${this.hoursOpenTitle[i]} ${this.hourlySalesArray[i]}`;
       ulElement.appendChild(liElement);
     }
   },
@@ -132,6 +135,7 @@ var lima = {
   maximumCustomersPerHour: 16,
   avgCookieSalesPerCustomer: 4.6,
   hoursOpen: 14,
+  hoursOpenTitle: ['6AM:','7AM:','8AM:','9AM:','10AM:','11AM:','12PM:','1PM:','2PM:','3PM:','4PM:','5PM:','6PM:','7PM:'],
   hourlySalesArray: [],
   randomNumberOfCustomers: function(){
     return Math.floor((Math.random()) * (this.maximumCustomersPerHour - this.minimumCustomersPerHour) + this.minimumCustomersPerHour);
@@ -149,7 +153,7 @@ var lima = {
     for (var i = 0; i < this.hourlySalesArray.length; i++){
       var liElement = document.createElement('li');
       liElement.setAttribute('id', `li${i}`);
-      liElement.textContent = `${this.hourlySalesArray[i]}`;
+      liElement.textContent = `${this.hoursOpenTitle[i]} ${this.hourlySalesArray[i]}`;
       ulElement.appendChild(liElement);
     }
   },
