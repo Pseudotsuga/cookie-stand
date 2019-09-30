@@ -20,11 +20,16 @@ var seattle = {
     var ulElement = document.createElement('ul');
     ulElement.textContent = `${this.storename} Sales Data:`;
     mainElement.appendChild(ulElement);
+    for (var i = 0; i < this.hourlySalesArray.length; i++){
+      var liElement = document.createElement('li');
+      liElement.setAttribute('id', `li${i}`);
+      ulElement.appendChild(liElement);
+      console.log(liElement);
+    }
   },
 };
 
 seattle.generateRandomSalesData();
-console.log(seattle.hourlySalesArray);
 seattle.renderSalesArrayAsUnorderedList();
 
 var tokyo = {
