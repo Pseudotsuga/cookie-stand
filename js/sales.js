@@ -1,6 +1,7 @@
 'use strict';
 
 var seattle = {
+  storename: 'seattle',
   minimumCustomersPerHour: 23,
   maximumCustomersPerHour: 65,
   avgCookieSalesPerCustomer: 6.3,
@@ -14,12 +15,20 @@ var seattle = {
       this.hourlySalesArray.push(Math.floor(this.randomNumberOfCustomers() * this.avgCookieSalesPerCustomer));
     }
   },
+  renderSalesArrayAsUnorderedList: function(){
+    var mainElement = document.getElementById('test');
+    var ulElement = document.createElement('ul');
+    ulElement.textContent = `${this.storename} Sales Data:`;
+    mainElement.appendChild(ulElement);
+  },
 };
 
 seattle.generateRandomSalesData();
 console.log(seattle.hourlySalesArray);
+seattle.renderSalesArrayAsUnorderedList();
 
 var tokyo = {
+  storename: 'tokyo',
   minimumCustomersPerHour: 3,
   maximumCustomersPerHour: 24,
   avgCookieSalesPerCustomer: 1.2,
@@ -36,6 +45,7 @@ var tokyo = {
 };
 
 var dubai = {
+  storename: 'dubai',
   minimumCustomersPerHour: 11,
   maximumCustomersPerHour: 38,
   avgCookieSalesPerCustomer: 3.7,
@@ -52,6 +62,7 @@ var dubai = {
 };
 
 var paris = {
+  storename: 'paris',
   minimumCustomersPerHour: 20,
   maximumCustomersPerHour: 38,
   avgCookieSalesPerCustomer: 2.3,
@@ -68,6 +79,7 @@ var paris = {
 };
 
 var lima = {
+  storename: 'lima',
   minimumCustomersPerHour: 2,
   maximumCustomersPerHour: 16,
   avgCookieSalesPerCustomer: 4.6,
@@ -82,3 +94,5 @@ var lima = {
     }
   },
 };
+
+
