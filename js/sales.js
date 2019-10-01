@@ -51,16 +51,24 @@ function renderTableFooter(){
 
   for(var i = 0; i < hoursOpenTitle.length; i++){
     var dynamicTotalValue = 0;
-    var test = document.getElementsByClassName(`${hoursOpenTitle[i]}`);
+    var hourValues = document.getElementsByClassName(`${hoursOpenTitle[i]}`);
     for(var j = 0; j < initialNumberOfStores; j++){
-      dynamicTotalValue += parseInt(`${test[j].textContent}`, 10);
-      console.log(dynamicTotalValue);
+      dynamicTotalValue += parseInt(`${hourValues[j].textContent}`, 10);
     }
     var tableDataElement = document.createElement('td');
     tableDataElement.setAttribute('class', 'hourlyTotal');
     tableDataElement.textContent = `${dynamicTotalValue}`;
     tableRowElement.appendChild(tableDataElement);
   }
+  tableDataElement = document.createElement('td');
+  for(var k = 0; k < initialNumberOfStores; k++){
+    var initialTotalTotal = 0;
+    var totalValues = document.getElementsByClassName('total');
+    initialTotalTotal += parseInt(`${totalValues[k].textContent}`, 10);
+    console.log(initialTotalTotal);
+  }
+  tableDataElement.textContent = `${initialTotalTotal}`;
+  tableRowElement.appendChild(tableDataElement);
 }
 function StoreLocation(storename, minimumCustomersPerHour, maximumCustomersPerHour, avgCookieSalesPerCustomer, hoursOpen, hourlySalesArray, initalTotalSales){
   this.storename = storename;
