@@ -1,5 +1,6 @@
 'use strict';
-var hoursOpenTitle = ['6AM:','7AM:','8AM:','9AM:','10AM:','11AM:','12PM:','1PM:','2PM:','3PM:','4PM:','5PM:','6PM:','7PM:'];
+var hoursOpenTitle = ['6AM','7AM','8AM','9AM','10AM','11AM','12PM','1PM','2PM','3PM','4PM','5PM','6PM','7PM'];
+var initialNumberOfStores = 0;
 
 function renderTableHead(){
   var mainElement = document.getElementById('target');
@@ -34,6 +35,27 @@ function renderTableHead(){
   tableRowElement.appendChild(tableHeadingElement);
 }
 
+// function renderTableFooter(){
+//   var targetLocationNode = document.getElementsByTagName('table');
+//   var tableFooterElement = document.createElement('tfoot');
+//   targetLocationNode.appendChild(tableFooterElement);
+
+//   var tableRowElement = document.createElement('tr');
+//   tableRowElement.setAttribute('id','totalTarget')
+//   tableFooterElement.appendChild(tableRowElement);
+
+//   var tableHeadingElement = document.createElement('th');
+//   tableHeadingElement.textContent = 'Hourly Totals: ';
+//   tableHeadingElement.setAttribute('scope', 'row');
+//   tableRowElement.appendChild(tableHeadingElement);
+
+//   var tableDataElement = document.createElement('td');
+//   tableDataElement.setAttribute('class', 'hourlyTotal');
+
+//   for(var i = 0; i < hours; i++){
+//     document.querySelectorAll()
+//   }
+// }
 function StoreLocation(storename, minimumCustomersPerHour, maximumCustomersPerHour, avgCookieSalesPerCustomer, hoursOpen, hourlySalesArray, initalTotalSales){
   this.storename = storename;
   this.minimumCustomersPerHour = minimumCustomersPerHour;
@@ -69,6 +91,7 @@ StoreLocation.prototype.renderSalesDataAsList = function(){
   var totalLiElement = document.createElement('li');
   totalLiElement.textContent = `Total: ${this.initalTotalSales}`;
   parentElement.appendChild(totalLiElement);
+  initialNumberOfStores += 1;
 };
 StoreLocation.prototype.renderSalesDataAsTableRow = function(){
   var targetLocationNode = document.getElementById('table');
@@ -82,13 +105,17 @@ StoreLocation.prototype.renderSalesDataAsTableRow = function(){
 
   for(var i = 0; i < this.hourlySalesArray.length; i++){
     var tableDataElement = document.createElement('td');
+    tableDataElement.setAttribute('class', `${hoursOpenTitle[i]}`);
     tableDataElement.textContent = `${this.hourlySalesArray[i]}`;
     tableRowElement.appendChild(tableDataElement);
   }
 
   tableDataElement = document.createElement('td');
+  tableDataElement.setAttribute('class', 'total');
   tableDataElement.textContent = this.initalTotalSales;
   tableRowElement.appendChild(tableDataElement);
+
+  initialNumberOfStores += 1;
 };
 
 renderTableHead();
@@ -101,20 +128,24 @@ seattle.renderSalesDataAsTableRow();
 var tokyo = new StoreLocation('Tokyo', 3, 24, 1.2, 14, [], 0);
 tokyo.randomNumberOfCustomers();
 tokyo.randomSalesData();
-// tokyo.renderSalesDataAsList();
+tokyo.renderSalesDataAsTableRow();
 
 var dubai = new StoreLocation('Dubai', 11, 38, 3.7, 14, [], 0);
 dubai.randomNumberOfCustomers();
 dubai.randomSalesData();
-// dubai.renderSalesDataAsList();
+dubai.renderSalesDataAsTableRow();
 
 var paris = new StoreLocation('Paris', 20, 38, 2.3, 14, [], 0);
 paris.randomNumberOfCustomers();
 paris.randomSalesData();
-// paris.renderSalesDataAsList();
+paris.renderSalesDataAsTableRow();
 
 var lima = new StoreLocation('Lima', 2, 16, 4.6, 14, [], 0);
 lima.randomNumberOfCustomers();
 lima.randomSalesData();
-// lima.renderSalesDataAsList();
+lima.renderSalesDataAsTableRow();
 
+for(var i = 0; i < 14; i++){
+  var test = document.getElementsByClassName(`${hoursOpenTitle[i]}`);
+  console.log(test[0]);
+}
