@@ -4,6 +4,7 @@ var hoursOpenTitle = ['6AM:','7AM:','8AM:','9AM:','10AM:','11AM:','12PM:','1PM:'
 function renderTableHead(){
   var mainElement = document.getElementById('target');
   var tableElement = document.createElement('table');
+  tableElement.setAttribute('id','table');
   mainElement.appendChild(tableElement);
 
   var captionElement = document.createElement('caption');
@@ -32,7 +33,6 @@ function renderTableHead(){
   tableHeadingElement.textContent = 'Daily Location Total: ';
   tableRowElement.appendChild(tableHeadingElement);
 }
-renderTableHead();
 
 function StoreLocation(storename, minimumCustomersPerHour, maximumCustomersPerHour, avgCookieSalesPerCustomer, hoursOpen, hourlySalesArray, initalTotalSales){
   this.storename = storename;
@@ -70,15 +70,33 @@ StoreLocation.prototype.renderSalesDataAsList = function(){
   totalLiElement.textContent = `Total: ${this.initalTotalSales}`;
   parentElement.appendChild(totalLiElement);
 };
-// StoreLocation.prototype.renderSalesDataAsTable = function(){
-//   var targetLocationNode = document.getElementById('target');
-//   var tableElement = document.createElement('table');
-//   var tableHeadE
-// }
+StoreLocation.prototype.renderSalesDataAsTableRow = function(){
+  var targetLocationNode = document.getElementById('table');
+  var tableRowElement = document.createElement('tr');
+  targetLocationNode.appendChild(tableRowElement);
+
+  var tableHeadingElement = document.createElement('th');
+  tableHeadingElement.setAttribute('scope', 'row');
+  tableHeadingElement.textContent = `${this.storename}: `;
+  tableRowElement.appendChild(tableHeadingElement);
+
+  for(var i = 0; i < this.hourlySalesArray.length; i++){
+    var tableDataElement = document.createElement('td');
+    tableDataElement.textContent = `${this.hourlySalesArray[i]}`;
+    tableRowElement.appendChild(tableDataElement);
+  }
+
+  tableDataElement = document.createElement('td');
+  tableDataElement.textContent = this.initalTotalSales;
+  tableRowElement.appendChild(tableDataElement);
+};
+
+renderTableHead();
+
 var seattle = new StoreLocation('Seattle', 23, 65, 6.3, 14, [], 0);
 seattle.randomNumberOfCustomers();
 seattle.randomSalesData();
-// seattle.renderSalesDataAsList();
+seattle.renderSalesDataAsTableRow();
 
 var tokyo = new StoreLocation('Tokyo', 3, 24, 1.2, 14, [], 0);
 tokyo.randomNumberOfCustomers();
