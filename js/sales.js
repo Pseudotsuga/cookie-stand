@@ -1,11 +1,16 @@
 'use strict';
 
-var submitForm = document.getElementById('form');
-console.log(submitForm);
+var submitForm = document.getElementById('formID');
+
+var storeNameNode = document.getElementById('storeNameInput');
+var minimumCustomersPerHourNode = document.getElementById('minimumCustomersPerHourInput');
+var maximumCustomersPerHourNode = document.getElementById('maximumCustomersPerHourInput');
+var averageCookieSalesPerCustomerNode = document.getElementById('averageCookiesSalesPerCustomerInput');
+var hoursOpenNode = document.getElementById('hoursOpenInput');
 
 function formListener(event){
   event.preventDefault();
-  console.log('5');
+  console.log(storeNameNode.value, minimumCustomersPerHourNode.value, maximumCustomersPerHourNode.value, averageCookieSalesPerCustomerNode.value, hoursOpenNode.value);
 }
 
 submitForm.addEventListener('submit', formListener);
