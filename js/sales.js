@@ -2,7 +2,7 @@
 var hoursOpenTitle = ['6AM','7AM','8AM','9AM','10AM','11AM','12PM','1PM','2PM','3PM','4PM','5PM','6PM','7PM'];
 var initialNumberOfStores = 0;
 var initialTotalTotal = 0;
-
+//Are your variables scoped appropriately throughout?
 function renderTableHead(){
   var mainElement = document.getElementById('target');
   var tableElement = document.createElement('table');
@@ -27,16 +27,18 @@ function renderTableHead(){
   for(var i = 0; i < hoursOpenTitle.length; i++){
     tableHeadingElement = document.createElement('th');
     tableHeadingElement.setAttribute('scope','col');
+    //This template literal is likely unecessary
     tableHeadingElement.textContent = `${hoursOpenTitle[i]} `;
     tableRowElement.appendChild(tableHeadingElement);
   }
   tableHeadingElement = document.createElement('th');
   tableHeadingElement.setAttribute('scope','col');
-  tableHeadingElement.textContent = 'Daily Location Total: ';
+  tableHeadingElement.textContent = 'Daily Location Total:';
   tableRowElement.appendChild(tableHeadingElement);
 }
 
 function renderTableFooter(){
+  //consider changing method below to getElementById, you did give the table an id after all.
   var targetLocationNode = document.getElementsByTagName('table')[0];
   var tableFooterElement = document.createElement('tfoot');
   targetLocationNode.appendChild(tableFooterElement);
@@ -91,6 +93,7 @@ StoreLocation.prototype.randomSalesData = function(){
 };
 
 StoreLocation.prototype.renderSalesDataAsList = function(){
+  //Standarize the reference path to your table between instances.
   var mainElement = document.getElementById('target');
   var ulElement = document.createElement('ul');
   ulElement.setAttribute('id',`${this.storename}UL`);
