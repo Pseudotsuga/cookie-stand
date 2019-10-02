@@ -137,27 +137,27 @@ StoreLocation.prototype.renderSalesDataAsTableRow = function(){
 renderTableHead();
 
 var seattle = new StoreLocation('Seattle', 23, 65, 6.3, 14, [], 0);
-seattle.randomNumberOfCustomers();
+// seattle.randomNumberOfCustomers();
 seattle.randomSalesData();
 seattle.renderSalesDataAsTableRow();
 
 var tokyo = new StoreLocation('Tokyo', 3, 24, 1.2, 14, [], 0);
-tokyo.randomNumberOfCustomers();
+// tokyo.randomNumberOfCustomers();
 tokyo.randomSalesData();
 tokyo.renderSalesDataAsTableRow();
 
 var dubai = new StoreLocation('Dubai', 11, 38, 3.7, 14, [], 0);
-dubai.randomNumberOfCustomers();
+// dubai.randomNumberOfCustomers();
 dubai.randomSalesData();
 dubai.renderSalesDataAsTableRow();
 
 var paris = new StoreLocation('Paris', 20, 38, 2.3, 14, [], 0);
-paris.randomNumberOfCustomers();
+// paris.randomNumberOfCustomers();
 paris.randomSalesData();
 paris.renderSalesDataAsTableRow();
 
 var lima = new StoreLocation('Lima', 2, 16, 4.6, 14, [], 0);
-lima.randomNumberOfCustomers();
+// lima.randomNumberOfCustomers();
 lima.randomSalesData();
 lima.renderSalesDataAsTableRow();
 
