@@ -14,11 +14,11 @@
         <nav><a href="./index.html">Homepage</a></nav>
     </header>
     <main id="target">
-        <form>
+        <form id="form">
             <fieldset>
                 <legend>Store Information</legend>
                 <label for='storeName'>Store name:</label>
-                <input type="text" name="storeName"/>
+                <input type="text" name="storeName" id="storeNameInput"/>
                 <label for='minimumCustomersPerHour'>Minimum customers per hour:</label>
                 <input type="text" name="minimumCustomersPerHour"/>
                 <label for='maximumCustomersPerHour'>Maximum customers per hour:</label>
@@ -29,9 +29,9 @@
                 <input type="text" name="hoursOpen"/>
             </fieldset>
             <label for="submitButton"></label>
-            <input type="submit" name="submitButton" value="submit"/>
+            <input type="submit" name="submitButton" value="submit" id="submitButton"/>
         </form>
     </main>
 </body>
-<!-- <script src="./js/sales.js"></script> -->
+<script src="./js/sales.js"></script>
 </html>

@@ -1,162 +1,174 @@
 'use strict';
-var hoursOpenTitle = ['6AM','7AM','8AM','9AM','10AM','11AM','12PM','1PM','2PM','3PM','4PM','5PM','6PM','7PM'];
-var initialNumberOfStores = 0;
-var initialTotalTotal = 0;
-//Are your variables scoped appropriately throughout?
-function renderTableHead(){
-  var mainElement = document.getElementById('target');
-  var tableElement = document.createElement('table');
-  tableElement.setAttribute('id','table');
-  mainElement.appendChild(tableElement);
 
-  var captionElement = document.createElement('caption');
-  captionElement.textContent = 'Sales Data by Time and Location';
-  tableElement.appendChild(captionElement);
+var submitForm = document.getElementById('form');
+console.log(submitForm);
 
-  var tableHeadElement = document.createElement('thead');
-  tableElement.appendChild(tableHeadElement);
-
-  var tableRowElement = document.createElement('tr');
-  tableHeadElement.appendChild(tableRowElement);
-
-  var tableHeadingElement = document.createElement('th');
-  tableHeadingElement.setAttribute('scope','col');
-  tableHeadingElement.textContent = 'Store';
-  tableRowElement.appendChild(tableHeadingElement);
-
-  for(var i = 0; i < hoursOpenTitle.length; i++){
-    tableHeadingElement = document.createElement('th');
-    tableHeadingElement.setAttribute('scope','col');
-    //This template literal is likely unecessary
-    tableHeadingElement.textContent = `${hoursOpenTitle[i]} `;
-    tableRowElement.appendChild(tableHeadingElement);
-  }
-  tableHeadingElement = document.createElement('th');
-  tableHeadingElement.setAttribute('scope','col');
-  tableHeadingElement.textContent = 'Daily Location Total:';
-  tableRowElement.appendChild(tableHeadingElement);
+function formListener(event){
+  event.preventDefault();
+  console.log('5');
 }
 
-function renderTableFooter(){
-  //consider changing method below to getElementById, you did give the table an id after all.
-  var targetLocationNode = document.getElementsByTagName('table')[0];
-  var tableFooterElement = document.createElement('tfoot');
-  targetLocationNode.appendChild(tableFooterElement);
+submitForm.addEventListener('submit', formListener);
 
-  var tableRowElement = document.createElement('tr');
-  tableRowElement.setAttribute('id','totalTarget');
-  tableFooterElement.appendChild(tableRowElement);
+// var hoursOpenTitle = ['6AM','7AM','8AM','9AM','10AM','11AM','12PM','1PM','2PM','3PM','4PM','5PM','6PM','7PM'];
+// var initialNumberOfStores = 0;
+// var initialTotalTotal = 0;
 
-  var tableHeadingElement = document.createElement('th');
-  tableHeadingElement.textContent = 'Hourly Totals: ';
-  tableHeadingElement.setAttribute('scope', 'row');
-  tableRowElement.appendChild(tableHeadingElement);
+// //Are your variables scoped appropriately throughout?
+// function renderTableHead(){
+//   var mainElement = document.getElementById('target');
+//   var tableElement = document.createElement('table');
+//   tableElement.setAttribute('id','table');
+//   mainElement.appendChild(tableElement);
 
-  for(var i = 0; i < hoursOpenTitle.length; i++){
-    var dynamicTotalValue = 0;
-    var hourValues = document.getElementsByClassName(`${hoursOpenTitle[i]}`);
-    for(var j = 0; j < initialNumberOfStores; j++){
-      dynamicTotalValue += parseInt(`${hourValues[j].textContent}`, 10);
-    }
-    var tableDataElement = document.createElement('td');
-    tableDataElement.setAttribute('class', 'hourlyTotal');
-    tableDataElement.textContent = `${dynamicTotalValue}`;
-    tableRowElement.appendChild(tableDataElement);
-  }
-  tableDataElement = document.createElement('td');
-  for(var k = 0; k < initialNumberOfStores; k++){
-    var totalValues = document.getElementsByClassName('total');
-    initialTotalTotal += parseInt(`${totalValues[k].textContent}`, 10);
-  }
-  tableDataElement.textContent = `${initialTotalTotal}`;
-  tableRowElement.appendChild(tableDataElement);
-}
-function StoreLocation(storename, minimumCustomersPerHour, maximumCustomersPerHour, avgCookieSalesPerCustomer, hoursOpen, hourlySalesArray, initalTotalSales){
-  this.storename = storename;
-  this.minimumCustomersPerHour = minimumCustomersPerHour;
-  this.maximumCustomersPerHour = maximumCustomersPerHour;
-  this.avgCookieSalesPerCustomer = avgCookieSalesPerCustomer;
-  this.hoursOpen = hoursOpen;
-  this.hourlySalesArray = hourlySalesArray;
-  this.initalTotalSales = initalTotalSales;
-}
+//   var captionElement = document.createElement('caption');
+//   captionElement.textContent = 'Sales Data by Time and Location';
+//   tableElement.appendChild(captionElement);
 
-StoreLocation.prototype.randomNumberOfCustomers = function(){
-  return Math.floor((Math.random()) * (this.maximumCustomersPerHour - this.minimumCustomersPerHour) + this.minimumCustomersPerHour);
-};
+//   var tableHeadElement = document.createElement('thead');
+//   tableElement.appendChild(tableHeadElement);
 
-StoreLocation.prototype.randomSalesData = function(){
-  for(var i = 0; i < this.hoursOpen; i++){
-    this.hourlySalesArray.push(Math.floor(this.randomNumberOfCustomers() * this.avgCookieSalesPerCustomer));
-    this.initalTotalSales += this.hourlySalesArray[i];
-  }
-};
+//   var tableRowElement = document.createElement('tr');
+//   tableHeadElement.appendChild(tableRowElement);
 
-StoreLocation.prototype.renderSalesDataAsList = function(){
-  //Standarize the reference path to your table between instances.
-  var mainElement = document.getElementById('target');
-  var ulElement = document.createElement('ul');
-  ulElement.setAttribute('id',`${this.storename}UL`);
-  ulElement.textContent = `${this.storename} Sales Data:`;
-  mainElement.appendChild(ulElement);
-  for (var i = 0; i < this.hourlySalesArray.length; i++){
-    var liElement = document.createElement('li');
-    liElement.setAttribute('id', `${this.storename}li${i}`);
-    liElement.textContent = `${hoursOpenTitle[i]} ${this.hourlySalesArray[i]}`;
-    ulElement.appendChild(liElement);
-  }
-  var parentElement = document.getElementById(`${this.storename}UL`);
-  var totalLiElement = document.createElement('li');
-  totalLiElement.textContent = `Total: ${this.initalTotalSales}`;
-  parentElement.appendChild(totalLiElement);
-  initialNumberOfStores += 1;
-};
+//   var tableHeadingElement = document.createElement('th');
+//   tableHeadingElement.setAttribute('scope','col');
+//   tableHeadingElement.textContent = 'Store';
+//   tableRowElement.appendChild(tableHeadingElement);
 
-StoreLocation.prototype.renderSalesDataAsTableRow = function(){
-  var targetLocationNode = document.getElementById('table');
-  var tableRowElement = document.createElement('tr');
-  targetLocationNode.appendChild(tableRowElement);
+//   for(var i = 0; i < hoursOpenTitle.length; i++){
+//     tableHeadingElement = document.createElement('th');
+//     tableHeadingElement.setAttribute('scope','col');
+//     //This template literal is likely unecessary
+//     tableHeadingElement.textContent = `${hoursOpenTitle[i]} `;
+//     tableRowElement.appendChild(tableHeadingElement);
+//   }
+//   tableHeadingElement = document.createElement('th');
+//   tableHeadingElement.setAttribute('scope','col');
+//   tableHeadingElement.textContent = 'Daily Location Total:';
+//   tableRowElement.appendChild(tableHeadingElement);
+// }
 
-  var tableHeadingElement = document.createElement('th');
-  tableHeadingElement.setAttribute('scope', 'row');
-  tableHeadingElement.textContent = `${this.storename}: `;
-  tableRowElement.appendChild(tableHeadingElement);
+// function renderTableFooter(){
+//   //consider changing method below to getElementById, you did give the table an id after all.
+//   var targetLocationNode = document.getElementsByTagName('table')[0];
+//   var tableFooterElement = document.createElement('tfoot');
+//   targetLocationNode.appendChild(tableFooterElement);
 
-  for(var i = 0; i < this.hourlySalesArray.length; i++){
-    var tableDataElement = document.createElement('td');
-    tableDataElement.setAttribute('class', `${hoursOpenTitle[i]}`);
-    tableDataElement.textContent = `${this.hourlySalesArray[i]}`;
-    tableRowElement.appendChild(tableDataElement);
-  }
+//   var tableRowElement = document.createElement('tr');
+//   tableRowElement.setAttribute('id','totalTarget');
+//   tableFooterElement.appendChild(tableRowElement);
 
-  tableDataElement = document.createElement('td');
-  tableDataElement.setAttribute('class', 'total');
-  tableDataElement.textContent = this.initalTotalSales;
-  tableRowElement.appendChild(tableDataElement);
+//   var tableHeadingElement = document.createElement('th');
+//   tableHeadingElement.textContent = 'Hourly Totals: ';
+//   tableHeadingElement.setAttribute('scope', 'row');
+//   tableRowElement.appendChild(tableHeadingElement);
 
-  initialNumberOfStores += 1;
-};
+//   for(var i = 0; i < hoursOpenTitle.length; i++){
+//     var dynamicTotalValue = 0;
+//     var hourValues = document.getElementsByClassName(`${hoursOpenTitle[i]}`);
+//     for(var j = 0; j < initialNumberOfStores; j++){
+//       dynamicTotalValue += parseInt(`${hourValues[j].textContent}`, 10);
+//     }
+//     var tableDataElement = document.createElement('td');
+//     tableDataElement.setAttribute('class', 'hourlyTotal');
+//     tableDataElement.textContent = `${dynamicTotalValue}`;
+//     tableRowElement.appendChild(tableDataElement);
+//   }
+//   tableDataElement = document.createElement('td');
+//   for(var k = 0; k < initialNumberOfStores; k++){
+//     var totalValues = document.getElementsByClassName('total');
+//     initialTotalTotal += parseInt(`${totalValues[k].textContent}`, 10);
+//   }
+//   tableDataElement.textContent = `${initialTotalTotal}`;
+//   tableRowElement.appendChild(tableDataElement);
+// }
+// function StoreLocation(storename, minimumCustomersPerHour, maximumCustomersPerHour, avgCookieSalesPerCustomer, hoursOpen, hourlySalesArray, initalTotalSales){
+//   this.storename = storename;
+//   this.minimumCustomersPerHour = minimumCustomersPerHour;
+//   this.maximumCustomersPerHour = maximumCustomersPerHour;
+//   this.avgCookieSalesPerCustomer = avgCookieSalesPerCustomer;
+//   this.hoursOpen = hoursOpen;
+//   this.hourlySalesArray = hourlySalesArray;
+//   this.initalTotalSales = initalTotalSales;
+// }
 
-renderTableHead();
+// StoreLocation.prototype.randomNumberOfCustomers = function(){
+//   return Math.floor((Math.random()) * (this.maximumCustomersPerHour - this.minimumCustomersPerHour) + this.minimumCustomersPerHour);
+// };
 
-var seattle = new StoreLocation('Seattle', 23, 65, 6.3, 14, [], 0);
-seattle.randomSalesData();
-seattle.renderSalesDataAsTableRow();
+// StoreLocation.prototype.randomSalesData = function(){
+//   for(var i = 0; i < this.hoursOpen; i++){
+//     this.hourlySalesArray.push(Math.floor(this.randomNumberOfCustomers() * this.avgCookieSalesPerCustomer));
+//     this.initalTotalSales += this.hourlySalesArray[i];
+//   }
+// };
 
-var tokyo = new StoreLocation('Tokyo', 3, 24, 1.2, 14, [], 0);
-tokyo.randomSalesData();
-tokyo.renderSalesDataAsTableRow();
+// StoreLocation.prototype.renderSalesDataAsList = function(){
+//   //Standarize the reference path to your table between instances.
+//   var mainElement = document.getElementById('target');
+//   var ulElement = document.createElement('ul');
+//   ulElement.setAttribute('id',`${this.storename}UL`);
+//   ulElement.textContent = `${this.storename} Sales Data:`;
+//   mainElement.appendChild(ulElement);
+//   for (var i = 0; i < this.hourlySalesArray.length; i++){
+//     var liElement = document.createElement('li');
+//     liElement.setAttribute('id', `${this.storename}li${i}`);
+//     liElement.textContent = `${hoursOpenTitle[i]} ${this.hourlySalesArray[i]}`;
+//     ulElement.appendChild(liElement);
+//   }
+//   var parentElement = document.getElementById(`${this.storename}UL`);
+//   var totalLiElement = document.createElement('li');
+//   totalLiElement.textContent = `Total: ${this.initalTotalSales}`;
+//   parentElement.appendChild(totalLiElement);
+//   initialNumberOfStores += 1;
+// };
 
-var dubai = new StoreLocation('Dubai', 11, 38, 3.7, 14, [], 0);
-dubai.randomSalesData();
-dubai.renderSalesDataAsTableRow();
+// StoreLocation.prototype.renderSalesDataAsTableRow = function(){
+//   var targetLocationNode = document.getElementById('table');
+//   var tableRowElement = document.createElement('tr');
+//   targetLocationNode.appendChild(tableRowElement);
 
-var paris = new StoreLocation('Paris', 20, 38, 2.3, 14, [], 0);
-paris.randomSalesData();
-paris.renderSalesDataAsTableRow();
+//   var tableHeadingElement = document.createElement('th');
+//   tableHeadingElement.setAttribute('scope', 'row');
+//   tableHeadingElement.textContent = `${this.storename}: `;
+//   tableRowElement.appendChild(tableHeadingElement);
 
-var lima = new StoreLocation('Lima', 2, 16, 4.6, 14, [], 0);
-lima.randomSalesData();
-lima.renderSalesDataAsTableRow();
+//   for(var i = 0; i < this.hourlySalesArray.length; i++){
+//     var tableDataElement = document.createElement('td');
+//     tableDataElement.setAttribute('class', `${hoursOpenTitle[i]}`);
+//     tableDataElement.textContent = `${this.hourlySalesArray[i]}`;
+//     tableRowElement.appendChild(tableDataElement);
+//   }
 
-renderTableFooter();
+//   tableDataElement = document.createElement('td');
+//   tableDataElement.setAttribute('class', 'total');
+//   tableDataElement.textContent = this.initalTotalSales;
+//   tableRowElement.appendChild(tableDataElement);
+
+//   initialNumberOfStores += 1;
+// };
+
+// renderTableHead();
+
+// var seattle = new StoreLocation('Seattle', 23, 65, 6.3, 14, [], 0);
+// seattle.randomSalesData();
+// seattle.renderSalesDataAsTableRow();
+
+// var tokyo = new StoreLocation('Tokyo', 3, 24, 1.2, 14, [], 0);
+// tokyo.randomSalesData();
+// tokyo.renderSalesDataAsTableRow();
+
+// var dubai = new StoreLocation('Dubai', 11, 38, 3.7, 14, [], 0);
+// dubai.randomSalesData();
+// dubai.renderSalesDataAsTableRow();
+
+// var paris = new StoreLocation('Paris', 20, 38, 2.3, 14, [], 0);
+// paris.randomSalesData();
+// paris.renderSalesDataAsTableRow();
+
+// var lima = new StoreLocation('Lima', 2, 16, 4.6, 14, [], 0);
+// lima.randomSalesData();
+// lima.renderSalesDataAsTableRow();
+
+// renderTableFooter();
