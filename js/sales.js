@@ -1,5 +1,6 @@
 'use strict';
 
+var additionalStoreDataArray = [];
 var submitForm = document.getElementById('formID');
 
 var storeNameNode = document.getElementById('storeNameInput');
@@ -8,12 +9,18 @@ var maximumCustomersPerHourNode = document.getElementById('maximumCustomersPerHo
 var averageCookieSalesPerCustomerNode = document.getElementById('averageCookiesSalesPerCustomerInput');
 var hoursOpenNode = document.getElementById('hoursOpenInput');
 
-function formListener(event){
+function additionalStoreDataArrayPush(){
+  var nestedArray = [];
+  nestedArray.push(storeNameNode.value, minimumCustomersPerHourNode.value, maximumCustomersPerHourNode.value, averageCookieSalesPerCustomerNode.value, hoursOpenNode.value);
+  additionalStoreDataArray.push(nestedArray);
+}
+function renderAdditionalStoreData(event){
   event.preventDefault();
-  console.log(storeNameNode.value, minimumCustomersPerHourNode.value, maximumCustomersPerHourNode.value, averageCookieSalesPerCustomerNode.value, hoursOpenNode.value);
+  additionalStoreDataArrayPush();
+  console.log(additionalStoreDataArray);
 }
 
-submitForm.addEventListener('submit', formListener);
+submitForm.addEventListener('submit', renderAdditionalStoreData);
 
 // var hoursOpenTitle = ['6AM','7AM','8AM','9AM','10AM','11AM','12PM','1PM','2PM','3PM','4PM','5PM','6PM','7PM'];
 // var initialNumberOfStores = 0;
