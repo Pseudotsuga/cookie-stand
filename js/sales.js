@@ -39,7 +39,13 @@ function renderTableHead(){
 
 function renderTableFooter(){
   var targetLocationNode = document.getElementById('table');
+  var tableFooterRemove = document.getElementById('removeTarget');
+  debugger;
+  if(document.getElementById('removeTarget')){
+    targetLocationNode.removeChild(tableFooterRemove);
+  }
   var tableFooterElement = document.createElement('tfoot');
+  tableFooterElement.setAttribute('id', 'removeTarget');
   targetLocationNode.appendChild(tableFooterElement);
 
   var tableRowElement = document.createElement('tr');
@@ -75,8 +81,6 @@ function makeObjectFromForm(event){
   event.preventDefault();
   var formObject = new StoreLocation(event.target.storeName.value, event.target.minimumCustomersPerHour.value, event.target.maximumCustomersPerHour.value, event.target.averageCookieSalesPerCustomer.value);
   formObject.randomSalesData();
-  console.log(formObject);
-  debugger;
   formObject.renderSalesDataAsTableRow();
 }
 
@@ -127,6 +131,8 @@ StoreLocation.prototype.renderSalesDataAsTableRow = function(){
   tableRowElement.appendChild(tableDataElement);
 
   initialNumberOfStores += 1;
+  renderTableFooter();
+
 };
 
 
@@ -156,4 +162,3 @@ lima.renderSalesDataAsTableRow();
 var submitForm = document.getElementById('form');
 submitForm.addEventListener('submit', makeObjectFromForm);
 
-renderTableFooter();
