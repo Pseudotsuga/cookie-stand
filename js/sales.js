@@ -75,6 +75,8 @@ function makeObjectFromForm(event){
   event.preventDefault();
   var formObject = new StoreLocation(event.target.storeName.value, event.target.minimumCustomersPerHour.value, event.target.maximumCustomersPerHour.value, event.target.averageCookieSalesPerCustomer.value);
   formObject.randomSalesData();
+  console.log(formObject);
+  debugger;
   formObject.renderSalesDataAsTableRow();
 }
 
@@ -89,7 +91,7 @@ function StoreLocation(storename, minimumCustomersPerHour, maximumCustomersPerHo
 
 
 StoreLocation.prototype.randomNumberOfCustomers = function(){
-  return Math.floor((Math.random()) * (this.maximumCustomersPerHour - this.minimumCustomersPerHour) + this.minimumCustomersPerHour);
+  return Math.floor((Math.random() * (this.maximumCustomersPerHour - this.minimumCustomersPerHour + 1)) + this.minimumCustomersPerHour);
 };
 
 StoreLocation.prototype.randomSalesData = function(){
