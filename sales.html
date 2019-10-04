@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cookie Sales Data</title>
-    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./css/reset.css"> -->
     <link rel="stylesheet" type="text/css" href="./css/style_all.css">
     <link rel="stylesheet" type="text/css" href="./css/style_sales.css">
 </head>
@@ -14,7 +14,23 @@
         <nav><a href="./index.html">Homepage</a></nav>
     </header>
     <main id="target">
-
+        <form id="form">
+            <fieldset>
+                <legend>Store Information</legend>
+                <label for='storeName'>Store name:</label>
+                <input type="text" name="storeName" id="storeNameInput"/>
+                <label for='minimumCustomersPerHour'>Minimum customers per hour:</label>
+                <input type="text" name="minimumCustomersPerHour" id="minimumCustomersPerHourInput"/>
+                <label for='maximumCustomersPerHour'>Maximum customers per hour:</label>
+                <input type="text" name="maximumCustomersPerHour" id="maximumCustomersPerHourInput"/>
+                <label for='averageCookieSalesPerCustomer'>Average cookie sales per customer:</label>
+                <input type="text" name="averageCookieSalesPerCustomer" id="averageCookiesSalesPerCustomerInput" />
+                <label for='hoursOpen'>Hours open per day:</label>
+                <input type="text" name="hoursOpen" id="hoursOpenInput"/>
+            </fieldset>
+            <label for="submitButton"></label>
+            <input type="submit" name="submitButton" value="submit" id="submitButton"/>
+        </form>
     </main>
 </body>
 <script src="./js/sales.js"></script>
