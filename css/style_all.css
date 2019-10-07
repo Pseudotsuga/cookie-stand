@@ -1,0 +1,16 @@
+body {
+  background-color: #3C3C42;
+  color: #EAE8F6;
+  font-family: 'Lobster', cursive;
+}
+nav {
+  font-size: 100px;
+  color: #EAE8F6;
+  width: 100%;
+}
+.currentPageAnchor {
+  background-image: url('../assets/images/salmon.png');  
+}
+nav > a:hover {
+  background-image: url('../assets/images/salmon.png');
+}
