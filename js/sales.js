@@ -40,7 +40,6 @@ function renderTableHead(){
 function renderTableFooter(){
   var targetLocationNode = document.getElementById('table');
   var tableFooterRemove = document.getElementById('removeTarget');
-  debugger;
   if(document.getElementById('removeTarget')){
     targetLocationNode.removeChild(tableFooterRemove);
   }
